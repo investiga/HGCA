@@ -1,17 +1,39 @@
 ---
 title: "Historia Gráfica del Conflicto Armado Colombiano (1958-2018)"
-author: "James Parra M"
-date: "7/12/2020"
-output: html_document
+author: "Grupo de Investigación Suma Yuyai"
+date: "2020" # "7/12/2020"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    theme: "cerulean"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Presentación
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+A 30 de junio de 2020 se contabilizan 9,031,048 víctimas del conflicto armado según la [Unidad para la Atención y Reparación Integral a las Víctimas](https://www.unidadvictimas.gov.co) (UARIV). Los hechos victimizantes con mayor frecuencia registrada son los de desplazamiento forzado (8.047.756), homicidios (1.044.399) y amenazas (502.005). No obstante, existen otros hechos a los que debe prestársele atención en aras de interpretar mejor las dinámicas de la guerra vivida en Colombia durante las últimas décadas.
+
+Sin embargo, de los datos concernientes al Registro Único de Víctimas (RUV), de donde resultan las citadas cifras, solo se publican las sumas totales de hechos acaecidos a partir de enero de 1985. Datos que aún no están disponibles para su descarga y análisis independiente. Con todo, ofrecen una primera evidencia del enorme impacto que el conflicto armado colombiano ha generado desde mucho tiempo atrás.
+
+Aunque no todo está perdido para un análisis basado en datos acerca de un problema que ha afectado y afecta por lo menos a 20 por ciento de la población colombiana. Una afectación que reclama todavía múltiples esfuerzos para su esclarecimiento desde los diversos sectores sociales, especialmente de aquellos que vivieron y continúan viviendo las secuelas de la agresión y la violencia.  
+
+En efecto, este es un proyecto abierto y colaborativo que busca una comprensión renovada del conflicto armado colombiano. Se pretende elaborar una historia interactiva y participativa de seis décadas de guerra en Colombia (1958-2018). Una tarea apalancada en formas contemporáneas del periodismo que exigen un trabajo especial en el manejo y procesamiento de grandes cantidades de datos, donde se esconden múltiples historias. La idea básica es pescar esos relatos en tal océano de información y presentarlos gráficamente al público en diversas plataformas.
+
+Se dice abierto pues sus datos y código fuente están disponibles en línea para su consulta y pueden ser usados bajo la Licencia Pública General ([GPL](LICENSE), por su sigla en inglés). Para ello se creó un repositorio con tales archivos en GitHub, al que se puede acceder libremente por medio de la carpeeta del proyecto en el siguiente enlace: <https://github.com/investiga/hgca>. Este hecho habilita sustancialmente la posibilidad de participar en una labor conjunta, sincrónica y asincrónica, sobre la temática propuesta. Por lo demás, permite que los avances realizados vayan acumulándose en el futuro y puedan ser cotinuados por futuros investigadores y periodistas interesados en ella.
+
+## Sobre los datos base del proyecto
+
+La base de datos más completa y disponible hasta el momento sobre la materia tratada es la publicada por el Centro Nacional de Memoria Histórica (CNMH) el año pasado. Este centro de memoria histórica fue creado mediante la [Ley 1448 de 2011](https://www.unidadvictimas.gov.co/sites/default/files/documentosbiblioteca/ley-1448-de-2011.pdf) en la que se adoptaron medidas de "atención, asistencia y reparación integral a las víctimas del conflicto armado interno". En 2019 el [Observatorio de Memoria y Conflicto](http://centrodememoriahistorica.gov.co/observatorio/), adscrito a dicha entidad, puso en línea la base de datos en su página electrónica para consulta y descarga. Los registros abarcan desde enero de 1958 hasta septiembre de 2018 y responden al mandato estipulado en dicha ley sobre el fortalecimiento de la memoria colectiva acerca de los fenómenos de violencia en la historia reciente. Del mismo modo, se encuentran allí los documentos referentes a la metodología de análisis de las variables incluidas en los datos.
+
+La colección se compone de 22 hojas de cálculo de casos y víctimas de acciones bélicas (AB), asesinatos selectivos (AS), ataques a poblados (AP). atentados terroristas (AT), daño a bienes civiles (DB), desaparición forzada (DF), masacres (MA), reclutamiento y utilización de menores (RU), secuestro (SE), violencia sexual (VS) y eventos por minas antipersonal (MI). En total se registran 764.720 observaciones, 352.786 de casos y 411.934 de víctimas.  
+
+Es de anotar 
+
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 

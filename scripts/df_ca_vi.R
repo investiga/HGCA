@@ -5,6 +5,7 @@ library(rio)
 library(readxl)
 library(gganimate)
 library(ggthemes)
+library(dplyr)
 
 # Importar archivos de casos y víctimas y cambiar tipos de datos en columnas con errores
 
@@ -129,4 +130,3 @@ CasosMI <- read_excel("rawd/CasosMI.xlsx",
                                     "text", "numeric", "numeric", "numeric", 
                                     "numeric", "numeric", "text"))
 VictimasMI <- read_excel("rawd/VictimasMI.xlsx")
-

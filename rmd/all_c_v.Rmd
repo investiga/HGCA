@@ -1,0 +1,70 @@
+---
+title: "Seis décadas de guerra en Colombia"
+author: "Grupo de Investigación Suma Yuyai"
+date: "2020" #"7/16/2020"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    theme: "cerulean"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Evolución de una tragedia
+
+### Víctimas
+
+Las víctimas de acciones bélicas (AB), asesinatos selectivos (AS), ataques a poblados (AP). atentados terroristas (AT), daño a bienes civiles (DB), desaparición forzada (DF), masacres (MA), reclutamiento y utilización de menores (RU), secuestro (SE), violencia sexual (VS) y eventos por minas antipersonal (MI) cuentan 411.934 observaciones entre 1958 y 2018. Una aproximación gráfica a la evolución del número de víctimas se aprecia en las siguientes figuras, a través de su presentación por año, década y periodo presidencial. De este modo, se acojen ángulos temporales diversos que enriquecen el análisis de la afectación a personas durante seis décadas.
+
+##### Figura 1 {.tabset .tabset-pills}
+
+###### Año
+
+(tab content)
+
+###### Gobierno
+
+(tab content)
+
+###### Década
+
+
+### Casos
+
+Por su parte, los casos de acciones bélicas (AB), asesinatos selectivos (AS), ataques a poblados (AP). atentados terroristas (AT), daño a bienes civiles (DB), desaparición forzada (DF), masacres (MA), reclutamiento y utilización de menores (RU), secuestro (SE), violencia sexual (VS) y eventos por minas antipersonal (MI) suman 352.786 registros entre 1958 y 2018. 
+
+##### Figura 1 {.tabset .tabset-pills}
+
+###### Año
+
+(tab content)
+
+###### Gobierno
+
+(tab content)
+
+###### Década
+
+
+
+
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
