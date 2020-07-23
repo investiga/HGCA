@@ -5,6 +5,7 @@ library(rio)
 library(readxl)
 library(gganimate)
 library(ggthemes)
+library(lubridate)
 
 # Importar archivos de casos y víctimas y cambiar tipos de datos en columnas con errores
 
@@ -23,6 +24,29 @@ CasosAB <- read_excel("rawd/CasosAB.xlsx",
                                     "numeric", "numeric", "text", "text"))
 
 # Casos de acciones bélicas ocurridas en tiempo y espacio
+
+CasosAB %>%
+  filter(ANNOH >= 1958L & ANNOH <= 2018L, MESH >= 1L & MESH <= 12L,
+         DIAH >= 1L & DIAH <= 31L) %>%
+  #count(ANNOH) %>%
+  #arrange(desc(n))
+  ggplot() +
+  aes(x = ANNOH) +
+  geom_bar() +
+  #geom_histogram(bins = 16L, fill = "#0c4c8a") +
+  labs(x = "Año", y = "Década", title = "Acciones bélicas", 
+       subtitle = "Casos", caption = "Fuente: elaborado con datos del CNMH") +
+  theme_economist()
+
+CasosAB %>%
+  filter(ANNOH == 2018) %>%
+  count(ANNOH)
+
+casosab %>% 
+  count(ANNOH) %>%
+  summarise(ANNOH, total = n())
+
+
 #Nacional
 ggplot(subset(CasosAB, ANNOH != 0), 
        aes(ANNOH)) +

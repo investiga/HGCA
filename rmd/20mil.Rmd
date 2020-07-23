@@ -1,0 +1,134 @@
+---
+title: "Veinte mil días de guerra"
+author: "Grupo de Investigación *Suma Yuyai*"
+date: "7/20/2020"
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+    toc_depth: 3
+    theme: cerulean
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+source("scripts/all_df.R", local = knitr::knit_global())
+# or sys.source("your-script.R", envir = knitr::knit_global())
+```
+
+## Una historia de tiempos arrebatados
+
+2017 marcó un hito en la historia colombiana. El acuerdo de paz de 2016, sin duda, abonó el terreno para una etapa de transición. Durante 2017 el número anual de víctimas cayó a niveles de finales de 1960 y comienzos de 1970. Es decir, tuvieron que pasar 50 años para un desescalamiento ostensible de las hostilidades causantes de millones de víctimas a lo largo y ancho del país. Décadas, años, meses, semanas, tiempos que se traducen en 20 mil días de conflicto armado.
+
+```{r all_v, echo = FALSE}
+all_v %>%
+  filter(ANNOH >= 1958L & ANNOH <= 2018L) %>%
+  group_by(ANNOH) %>%
+  tally() %>%
+  ggplot(., aes(x = ANNOH, y = n)) +
+  geom_bar(stat = "identity", fill = "#00a8e6", width=0.3) +
+  geom_text(aes(label = ANNOH), angle = 90, vjust = 0.5, hjust = -0.1, 
+            position = position_dodge(width = 1), check_overlap = TRUE) +
+  ylim(0, 41000) +
+  labs(x = NULL, y = NULL, title = "Fig. 1.1. Número de víctimas por año",
+        subtitle ="(1958-2018)", caption = "Fuente: elaborado con datos del CNMH") +
+  theme_clean() +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+Un conflicto armado con raíces definidas especialmente en 1962, cuando los caminos del civilismo son menospreciados en favor de acciones bélicas que alimentarán las siguientes seis décadas de la historia colombiana. A comienzos de esa década se operó una transformación en la sociedad colombiana que condujo a una guerra de menor intensidad desde 1968. 
+
+```{r all_v_02, echo=FALSE}
+all_v %>%
+  filter(ANNOH > 0 & MESH > 0 & DIAH > 0) %>%
+  group_by(ANNOH, MESH, DIAH) %>%
+  count(ANNOH) %>%
+  arrange(desc(n))
+
+
+all_v %>%
+  unite("Fecha", ANNOH:MESH, sep = "-", na.rm = TRUE, remove = FALSE) %>%
+  unite("Fecha", Fecha:DIAH, sep = "-", na.rm = TRUE, remove = FALSE) %>%
+  filter(Fecha >= "1960-01-01" & Fecha <= "2018-05-14" & !is.na(Fecha)) %>%
+  ggplot() +
+  aes(x = as.Date(Fecha)) +
+  geom_bar() +
+  ylim(0, 200) +
+  scale_x_date(breaks = seq(as.Date("1960-01-01"), as.Date("2018-05-14"), "10 years")) +
+  theme_minimal()
+```
+
+
+
+### Víctimas
+
+Las víctimas de acciones bélicas (AB), asesinatos selectivos (AS), ataques a poblados (AP). atentados terroristas (AT), daño a bienes civiles (DB), desaparición forzada (DF), masacres (MA), reclutamiento y utilización de menores (RU), secuestro (SE), violencia sexual (VS) y eventos por minas antipersonal (MI) cuentan 411.934 observaciones entre 1958 y 2018. Una aproximación gráfica a la evolución del número de víctimas se aprecia en las siguientes figuras, a través de su presentación por año, década y periodo presidencial. De este modo, se acojen ángulos temporales diversos que enriquecen el análisis de la afectación a personas durante seis décadas.
+
+##### Figura 1 {.tabset .tabset-pills}
+
+###### Año
+
+(tab content)
+
+###### Gobierno
+
+(tab content)
+
+###### Década
+
+
+### Casos
+
+Por su parte, los casos de acciones bélicas (AB), asesinatos selectivos (AS), ataques a poblados (AP). atentados terroristas (AT), daño a bienes civiles (DB), desaparición forzada (DF), masacres (MA), reclutamiento y utilización de menores (RU), secuestro (SE), violencia sexual (VS) y eventos por minas antipersonal (MI) suman 352.786 registros entre 1958 y 2018. 
+
+##### Figura 1 {.tabset .tabset-pills}
+
+###### Año
+
+(tab content)
+
+###### Gobierno
+
+(tab content)
+
+###### Década
+
+
+## Periodización propuesta
+
+### Los años de la transición (1962-1967) 
+
+### Un conflicto de baja intensidad (1968-1978)
+
+### La época del escalonamiento (1978-1995)
+
+### Los años del terror (1995-2008)
+
+### Desescalonamiento y acuerdo de paz (2008-2016)
+
+
+
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

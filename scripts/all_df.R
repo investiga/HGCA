@@ -6,8 +6,12 @@ library(readxl)
 library(gganimate)
 library(ggthemes)
 library(dplyr)
+library(lubridate)
+library(tibble)
+library(data.table)
+library(ggrepel)
 
-# Importar archivos de casos y víctimas y cambiar tipos de datos en columnas con errores
+# Importar archivos de casos y víctimas; cambio de datos en columnas con errores
 
 # Acciones bélicas
 CasosAB <- read_excel("rawd/CasosAB.xlsx", 
@@ -103,7 +107,7 @@ CasosSE <- read_excel("rawd/CasosSE.xlsx")
 VictimasSE <- read_excel("rawd/VictimasSE.xlsx")
 
 # Violencias sexuales
-CasoVSI <- read_excel("rawd/CasoVSI.xlsx", 
+CasosVS <- read_excel("rawd/CasoVSI.xlsx", 
                       col_types = c("numeric", "text", "numeric", 
                                     "numeric", "numeric", "text", "text", 
                                     "text", "text", "text", "text", "text", 
@@ -130,3 +134,13 @@ CasosMI <- read_excel("rawd/CasosMI.xlsx",
                                     "text", "numeric", "numeric", "numeric", 
                                     "numeric", "numeric", "text"))
 VictimasMI <- read_excel("rawd/VictimasMI.xlsx")
+
+# Unir registros por casos y víctimas totales para conteo y graficación global
+
+l_c <- list(CasosAB, CasosAP, CasosAS, CasosAT, CasosDB, CasosDF, CasosMA,
+               CasosMI, CasosRU, CasosSE, CasosVS)
+all_c <- rbindlist(l_c, fill = TRUE)
+
+l_v <- list(VictimasAB, VictimasAP, VictimasAS, VictimasAT, VictimasDB, 
+               VictimasDF, VictimasMA, VictimasMI, VictimasRU, VictimasSE, VictimasVS)
+all_v <- rbindlist(l_v, fill = TRUE)

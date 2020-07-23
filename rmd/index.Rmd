@@ -1,6 +1,6 @@
 ---
 title: "Historia Gráfica del Conflicto Armado Colombiano (1958-2018)"
-author: "Grupo de Investigación Suma Yuyai"
+author: "Grupo de Investigación *Suma Yuyai*"
 date: "2020" # "7/12/2020"
 output: 
   html_document:
@@ -30,23 +30,26 @@ Se dice abierto pues sus datos y código fuente están disponibles en línea par
 
 La base de datos más completa y disponible hasta el momento sobre la materia tratada es la publicada por el Centro Nacional de Memoria Histórica (CNMH) el año pasado. Este centro de memoria histórica fue creado mediante la [Ley 1448 de 2011](https://www.unidadvictimas.gov.co/sites/default/files/documentosbiblioteca/ley-1448-de-2011.pdf) en la que se adoptaron medidas de "atención, asistencia y reparación integral a las víctimas del conflicto armado interno". En 2019 el [Observatorio de Memoria y Conflicto](http://centrodememoriahistorica.gov.co/observatorio/), adscrito a dicha entidad, puso en línea la base de datos en su página electrónica para consulta y descarga. Los registros abarcan desde enero de 1958 hasta septiembre de 2018 y responden al mandato estipulado en dicha ley sobre el fortalecimiento de la memoria colectiva acerca de los fenómenos de violencia en la historia reciente. Del mismo modo, se encuentran allí los documentos referentes a la metodología de análisis de las variables incluidas en los datos.
 
-La colección se compone de 22 hojas de cálculo de casos y víctimas de acciones bélicas (AB), asesinatos selectivos (AS), ataques a poblados (AP). atentados terroristas (AT), daño a bienes civiles (DB), desaparición forzada (DF), masacres (MA), reclutamiento y utilización de menores (RU), secuestro (SE), violencia sexual (VS) y eventos por minas antipersonal (MI). En total se registran 764.720 observaciones, 352.786 de casos y 411.934 de víctimas.  
+Para una consulta detallada sobre la metodología de recopilación se aconseja revisar el el tomo de [diccionarios de las bases de datos del Observatorio de Memoria y Conflicto](http://centrodememoriahistorica.gov.co/observatorio/wp-content/uploads/2016/09/Diccionarios-Bases-de-Datos-Observatorio-de-Memoria-y-Conflicto-1.pdf) y el [marco conceptual](http://centrodememoriahistorica.gov.co/observatorio/wp-content/uploads/2016/09/Marco-Conceptual-Observatorio-de-Memoria-y-Conflicto-1.pdf), pensado allí como una plataforma que integra fuentes sociales e institucionales que contribuyen al esclarecimiento histórico y la memoria sobre el conflicto armado colombiano.
 
-Es de anotar 
+Antes de empezar la labor analítica se debieron organizar los datos en bruto para su procesamiento en R. Estos sets de datos se importan fácilmente a través del script all_df.R. En cuanto a all_c.R y all_v.R, agregan la información de cada una de las tablas de casos y víctimas, respectivamente, creadas con all_df.R. De ese modo, se accede a la cuantificación global en las categorías de casos y víctimas.
 
+La colección se compone entonces por 22 hojas de cálculo de casos y víctimas de acciones bélicas (AB), asesinatos selectivos (AS), ataques a poblados (AP). atentados terroristas (AT), daño a bienes civiles (DB), desaparición forzada (DF), masacres (MA), reclutamiento y utilización de menores (RU), secuestro (SE), violencia sexual (VS) y eventos por minas antipersonal (MI). En total se registran 764.720 observaciones, 352.786 de casos y 411.934 de víctimas. 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+En el total de registros de víctimas se presentan 798 duplicados, 15 triplicados y 1 cuadruplicado (que suman 831 repeticiones). Estas repeticiones se deben, en varios casos a que algunas de las víctimas lo fueron en más de una ocasión. La revision de estas repeticiones queda en abierto para indagar en detalle qué paso con cada una de ellas. Por el momento, al revisar el unico registro cuadruple (Id 482938) de la colección, se encontró el caso de un civil de 18 a 28 años, en San Pablo, Bolívar, afectado el 22 de junio de 2001 y, nuevamente, el 9 de septiembre de 2005 en Coveñas, Sucre.  En el primer hecho, con presunta responsabilidad de las Autodefensas Unidas de Colombia (AUC), hubo tortura e intimidación, mientras que el segundo anota que hubo pago por liberación sin definir un grupo responsable. Los otros dos registros corresponden a una repetición  del primer hecho ocurrido en San Pablo o a una situación extraordinaria de este caso en particular. 
 
-```{r cars}
-summary(cars)
-```
+En consecuencia, se decidió incluir todos los registros de casos y víctimas sin restar, por el momento, tales repeticiones del conteo global mientras no se sepa a ciencia cierta el porqué aparecen así en la base de datos.
 
-## Including Plots
+Todo lo anterior refuerza la necesidad del trabajo colaborativo para avanzar en la tarea propuesta de construcción de una historia renovada del conflicto armado colombiano. La periodización propuesta y las secciones complementarias se pueden consultar en [Veinte mil días de guerra](https://github.com/investiga/hgca/20mil).
 
-You can also embed plots, for example:
+## Sobre el grupo de investigación *Suma Yuyai*
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+El grupo de investigación [*Suma Yuyai*](https://scienti.minciencias.gov.co/gruplac/jsp/visualiza/visualizagr.jsp?nro=00000000021049) se crea en 2013 como un proyecto de la [Fundación Ridcharí Indígena](https://fridchari.blogspot.com/). Esta organización busca mejorar la calidad de vida y la participación ciudadana de las poblaciones más vulnerables socialmente, empresarios y comunidades a través de la implementación de planes, programas y proyectos de diversa índole, que posibiliten el bienestar comunitario y el desarrollo sostenible en los ámbitos de acción, organización y producción humana. Para avanzar en este propósito el proyecto aquí propuesto incentiva la participación ciudadana de las víctimas del conflicto armado colombiano como base para la construcción de un país reconciliado y en paz.
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+*Suma Yuyai* es un grupo registrado ante el Ministerio de Ciencia, Tecnología e Innovación en espera de categorización y esta propuesta se adscribe a la línea de investigación [*Historiografías del Abya Yala*](https://scienti.minciencias.gov.co/gruplac/jsp/visualiza/visualizagr.jsp?nro=00000000021049), la cual hace parte de su plan estratégico como colectivo de pesquisa científica. Además, siguiendo el espíritu abierto y colaborativo de la iniciativa historiográfica propuesta, animamos a quienes quieran participar activamente para que se integren a él.
+
+## A los futuros colaboradores
+
+Como se señaló al comienzo, la tarea de construir una comprensión histórica del conflicto armado reciente en Colombia es inmensa. Es también una deuda para con las millones de víctimas de atrocidades y hechos violentos ocurridos en medio de la guerra. Por ello, reiteramos la invitación a quienes quieran unirse al equipo que hoy asume dicha tarea para que nos acompañen en esta expedición. Además del repositorio creado en [GitHub](https://github.com/investiga/hgca) y las páginas electrónicas del proyecto, los interesados pueden comunicarse también a los correos ridchari@gmail.com o nukajames@gmail.com.
+
+Sean bienvenid@s a [Veinte mil días de guerra](https://github.com/investiga/hgca/20mil).
