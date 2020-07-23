@@ -52,4 +52,4 @@ El grupo de investigación [*Suma Yuyai*](https://scienti.minciencias.gov.co/gru
 
 Como se señaló al comienzo, la tarea de construir una comprensión histórica del conflicto armado reciente en Colombia es inmensa. Es también una deuda para con las millones de víctimas de atrocidades y hechos violentos ocurridos en medio de la guerra. Por ello, reiteramos la invitación a quienes quieran unirse al equipo que hoy asume dicha tarea para que nos acompañen en esta expedición. Además del repositorio creado en [GitHub](https://github.com/investiga/hgca) y las páginas electrónicas del proyecto, los interesados pueden comunicarse también a los correos ridchari@gmail.com o nukajames@gmail.com.
 
-Sean bienvenid@s a [Veinte mil días de guerra](https://github.com/investiga/hgca/20mil/).
+Sean bienvenid@s a [Veinte mil días de guerra](https://investiga.github.io/hgca/20mil/).
