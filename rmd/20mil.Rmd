@@ -26,7 +26,11 @@ source("scripts/all_df.R", local = knitr::knit_global())
 
 2017 marcó un hito en la historia colombiana. El acuerdo de paz de 2016, sin duda, abonó el terreno para una etapa de transición. Durante 2017 el número anual de víctimas cayó a niveles de finales de 1960 y comienzos de 1970. Es decir, tuvieron que pasar 50 años para un desescalamiento ostensible de las hostilidades causantes de millones de víctimas a lo largo y ancho del país. Décadas, años, meses, semanas, tiempos que se traducen en 20 mil días de conflicto armado.
 
-```{r all_v, echo = FALSE}
+##### Figura 1 {.tabset .tabset-fade .tabset-pills}
+
+###### Año
+
+```{r all_v_y, echo = FALSE}
 all_v %>%
   filter(ANNOH >= 1958L & ANNOH <= 2018L) %>%
   group_by(ANNOH) %>%
@@ -44,45 +48,96 @@ all_v %>%
         axis.ticks.x=element_blank())
 ```
 
-Un conflicto armado con raíces definidas especialmente en 1962, cuando los caminos del civilismo son menospreciados en favor de acciones bélicas que alimentarán las siguientes seis décadas de la historia colombiana. A comienzos de esa década se operó una transformación en la sociedad colombiana que condujo a una guerra de menor intensidad desde 1968. 
+###### Década
 
-```{r all_v_02, echo=FALSE}
+```{r all_v_d, echo = FALSE}
 all_v %>%
-  filter(ANNOH > 0 & MESH > 0 & DIAH > 0) %>%
-  group_by(ANNOH, MESH, DIAH) %>%
-  count(ANNOH) %>%
-  arrange(desc(n))
-
-
-all_v %>%
-  unite("Fecha", ANNOH:MESH, sep = "-", na.rm = TRUE, remove = FALSE) %>%
-  unite("Fecha", Fecha:DIAH, sep = "-", na.rm = TRUE, remove = FALSE) %>%
-  filter(Fecha >= "1960-01-01" & Fecha <= "2018-05-14" & !is.na(Fecha)) %>%
+  filter(ANNOH >= 1960L) %>%
+  count(decade = 10 * (ANNOH %/% 10)) %>%
   ggplot() +
-  aes(x = as.Date(Fecha)) +
-  geom_bar() +
-  ylim(0, 200) +
-  scale_x_date(breaks = seq(as.Date("1960-01-01"), as.Date("2018-05-14"), "10 years")) +
-  theme_minimal()
+  aes(x = decade, y = n) +
+  geom_bar(stat = "identity", fill = "#00a8e6") +
+  geom_text(aes(label = decade), vjust = -0.2, hjust = 0.5, 
+            position = position_dodge(width = 1), check_overlap = TRUE) +
+  labs(x = NULL, y = NULL, title = "Fig. 1.2. Número de víctimas por década",
+        subtitle ="(1960-2018)", caption = "Fuente: elaborado con datos del CNMH") +
+  theme_clean() +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 ```
 
+###### Gobierno
 
+```{r all_v_g, echo=FALSE}
+all_v %>%
+  filter(ANNOH >= 1958L & MESH >= 1L & DIAH >= 1L) %>%
+  unite(Fecha, ANNOH:MESH, sep = "-", remove = FALSE) %>%
+  unite(Fecha, Fecha:DIAH, sep = "-", remove = FALSE) %>%
+  mutate(Fecha = as.Date(Fecha, "%Y-%m-%d")) %>%
+  filter(Fecha >= "1958-08-07") %>%
+  ggplot(., aes(Fecha)) +
+  stat_bin(breaks = seq(as.Date("1958-08-07"), as.Date("2018-08-07"), 
+                        by = "4 years"), fill = "#00a8e6", color = "black") +
+  scale_x_date(breaks = seq(as.Date("1958-08-07"), as.Date("2018-08-07"), 
+                            by = "4 years"), date_labels = "%b %y") +
+  ylim(0, 115000) +
+  labs(x = NULL, y = NULL, title = "Fig. 1.3. Número de víctimas por periodo presidencial", subtitle ="(1958-2018)", caption = "Fuente: elaborado con datos del CNMH") +
+  theme_clean() +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))
+```
+
+### Víctimas
+
+Un conflicto armado con raíces definidas especialmente en 1962, cuando los caminos del civilismo son menospreciados en favor de acciones bélicas que alimentarán las siguientes seis décadas de la historia colombiana. A comienzos de esa década se operó una transformación en la sociedad colombiana que condujo a una guerra de menor intensidad desde 1968.
+
+```{r all_v_day, echo = FALSE}
+all_v %>%
+  filter(DIAH >= 1L & MESH >= 1L & ANNOH >= 1958L) %>%
+  unite(Fecha, ANNOH:MESH, sep = "-", remove = TRUE, na.rm = TRUE) %>%
+  unite(Fecha, Fecha:DIAH, sep = "-", remove = TRUE, na.rm = TRUE) %>%
+  count(Fecha = as.Date(Fecha)) %>%
+  ggplot(aes(Fecha, n)) +
+  geom_col(width = 10, fill = "#00a8e6", na.rm = TRUE) +
+  theme_clean()
+```
+
+```{r}
+all_v %>%
+  filter(ANNOH >= 2000L & ANNOH <= 2009, MESH >= 1, DIAH >= 1) %>%
+  unite(fecha, ANNOH:MESH, sep = "-", remove = TRUE, na.rm = TRUE) %>%
+  unite(Fecha, fecha:DIAH, sep = "-", remove = TRUE, na.rm = TRUE) %>%
+  ggplot() + 
+  aes(x = as.Date(Fecha, "%Y-%m-%d")) +
+  geom_bar(fill = "#00a8e6") +
+  labs(x = NULL, y = NULL, title = "Fig. 1.3. Número de víctimas por gobierno",
+        subtitle ="(1958-2018)", caption = "Fuente: elaborado con datos del CNMH") +
+  scale_x_date() +
+  scale_y_sqrt() +
+  theme_clean()
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(), 
+        axis.ticks.x=element_blank())
+```
 
 ### Víctimas
 
 Las víctimas de acciones bélicas (AB), asesinatos selectivos (AS), ataques a poblados (AP). atentados terroristas (AT), daño a bienes civiles (DB), desaparición forzada (DF), masacres (MA), reclutamiento y utilización de menores (RU), secuestro (SE), violencia sexual (VS) y eventos por minas antipersonal (MI) cuentan 411.934 observaciones entre 1958 y 2018. Una aproximación gráfica a la evolución del número de víctimas se aprecia en las siguientes figuras, a través de su presentación por año, década y periodo presidencial. De este modo, se acojen ángulos temporales diversos que enriquecen el análisis de la afectación a personas durante seis décadas.
 
-##### Figura 1 {.tabset .tabset-pills}
-
-###### Año
-
-(tab content)
-
-###### Gobierno
-
-(tab content)
-
-###### Década
+```{r}
+all_v %>%
+  filter(ANNOH > 0L & MESH > 0L & DIAH > 0L) %>%
+  unite(Fecha, ANNOH:MESH, sep = "-") %>%
+  unite(Fecha, Fecha:DIAH, sep = "-") %>%
+  mutate(Fecha = as.Date(Fecha)) %>%
+  ggplot(., aes(x = Fecha)) +
+  geom_histogram(binwidth = 0.5) +
+  scale_y_sqrt() +
+  #ylim(0, 400) +
+  #scale_x_date(date_breaks = "day") +
+  theme_clean()
+```
 
 
 ### Casos
@@ -113,22 +168,3 @@ Por su parte, los casos de acciones bélicas (AB), asesinatos selectivos (AS), a
 ### Los años del terror (1995-2008)
 
 ### Desescalonamiento y acuerdo de paz (2008-2016)
-
-
-
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
