@@ -144,3 +144,6 @@ all_c <- rbindlist(l_c, fill = TRUE)
 l_v <- list(VictimasAB, VictimasAP, VictimasAS, VictimasAT, VictimasDB, 
                VictimasDF, VictimasMA, VictimasMI, VictimasRU, VictimasSE, VictimasVS)
 all_v <- rbindlist(l_v, fill = TRUE)
+
+t_days <- read_csv("outd/t_days.csv", col_types = 
+                     cols(Fecha = col_date(format = "%Y-%m-%d")))

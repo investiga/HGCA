@@ -1,6 +1,6 @@
 ---
 title: "Historia Gráfica del Conflicto Armado Colombiano (1958-2018)"
-author: "Grupo de Investigación *Suma Yuyai*"
+author: "Grupo de Investigación *Suma Yuyai* - Fundación Ridcharí Indígena"
 date: "2020" # "7/12/2020"
 output: 
   html_document:
